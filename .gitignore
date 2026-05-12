@@ -1,0 +1,3 @@
+# Upstream exemplars fetched at install time — not redistributed by this repo.
+# See skills/html-reports/references/NOTICE.md for the legal rationale.
+skills/html-reports/references/*.html
