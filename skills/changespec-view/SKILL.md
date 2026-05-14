@@ -198,3 +198,10 @@ and proceed. Tell the user to cache the exemplars locally for next time.
   every artifact, the prose split rule, the example fixture.
 - **`change-protocol`** (in `incunabula`) — lifecycle policy, when each
   artifact gets written and by which `/sdlc:*` command.
+- **`solution-review-pack`** (in `incunabula`) — the curated
+  three-HTML review pack (Requirements / SAD / Implementation
+  Overview). Borrows this skill's design tokens and per-artifact
+  projection patterns, then composes them into a reviewer-targeted
+  narrative with attribution back to bootstrap answers. If a user
+  asks for a "review pack" or "Solution Architecture Document",
+  that skill takes precedence; this one is for per-artifact reads.
