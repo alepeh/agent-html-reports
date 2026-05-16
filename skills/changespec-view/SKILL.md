@@ -31,6 +31,7 @@ The user will point at one of:
 | Target type | What it points at | Output filename |
 |---|---|---|
 | Single change | `changes/<name>/` | `<name>.html` |
+| Decisions log (alone) | `changes/<name>/decisions.yaml` | `<name>-decisions.html` |
 | Architecture pack | `architecture/` | `architecture.html` |
 | Domain model | `architecture/domain-model.yaml` | `domain-model.html` |
 | Single ADR | `architecture/decisions/NNNN-<slug>.yaml` | `adr-NNNN-<slug>.html` |
@@ -87,16 +88,25 @@ exemplar. Read the exemplar file before composing the section.
 | `meta.yaml` + `proposal.yaml` (or change summary) | `references/17-pr-writeup.html` | The "change overview" panel: type pill, status row, why-and-what summary, capabilities list. |
 | `design.yaml` | `references/15-research-concept-explainer.html` | Context → rationale → decisions table → risks → rollback. The 9-item `domain_impact.checklist` renders as a status band; each item a card colored by `checked`. |
 | `tasks.yaml` | `references/16-implementation-plan.html` or `references/18-editor-triage-board.html` | Phases as columns or sections, tasks as rows. Done count vs total in a stat band at top. |
+| `decisions.yaml` | `references/17-pr-writeup.html` (decision card stack) | One card per `D-NNN` entry in timestamp order. Card components: id pill (mono), stage pill, summary headline, choice (called out), `options_considered[]` as a small table with picked-row highlighted (olive left-border) vs rejected (gray left-border), rationale (prose panel), attribution line ("decided by agent applying R-NNN" / "owner answered X at bootstrap" / "agent judgement"), references row of inline pills (FR/NFR/OOS, ADRs, rules, entities, bindings, files), confidence pill (low=clay, medium=gray-500, high=olive), `revisit: true` shown as a `--clay`-bordered warning callout below the card. Stable anchor `id="d-NNN"` (lower-case) on each card so the change-review-pack widget can attach feedback. |
 | `spec.yaml` (delta) | `references/14-research-feature-explainer.html` | Four delta buckets (`added`/`modified`/`removed`/`renamed`) as separate panels. Each requirement card lists scenarios with verb pills (GIVEN/WHEN/THEN/AND/BUT). |
 | `adr.yaml` | `references/17-pr-writeup.html` (decision card) | Status pill, context, decision, three-column consequences (easier/harder/neutral), rules-produced as `R-NNN` pills linking back to rules.html. |
 | `rules.yaml` | `references/11-status-report.html` (table) | Filterable table with R-NNN | title | category | source | rule. Provenance column links back to its source change. |
 | `domain-model.yaml` | `references/13-flowchart-diagram.html` + table | ERD-style SVG of bounded contexts → aggregates → concepts using `relationships[]`. Below it: invariants list, glossary table. Enum concepts render `enum_values` as inline pills. |
 | `acceptance/<group>.yaml` | `references/11-status-report.html` | Each AC as a row colored by `status`: olive = implemented, clay = partial, gray-500 = specified. Test path in mono. |
 
+`review/feedback.yaml` is **not** rendered by this skill on its own —
+it's reviewer-authored data, surfaced inside the **change-review-pack**
+narrative (in `incunabula`) where it has the right context to attach
+to. If the user explicitly asks to render `feedback.yaml` standalone,
+fall through to the generic prose-panel pattern and recommend
+**change-review-pack** instead.
+
 When the target is a **whole change** (`changes/<name>/`), compose the
 artifacts in lifecycle order under one `<main>`: change overview →
-proposal → design → spec deltas → tasks. Don't render an artifact that
-isn't present; don't emit empty placeholder panels.
+proposal → design → spec deltas → tasks → decisions log (when
+`decisions.yaml` exists). Don't render an artifact that isn't present;
+don't emit empty placeholder panels.
 
 When the target is `architecture/`, compose: domain model → rules
 registry → ADR index → acceptance index, each as its own section with
@@ -205,3 +215,11 @@ and proceed. Tell the user to cache the exemplars locally for next time.
   narrative with attribution back to bootstrap answers. If a user
   asks for a "review pack" or "Solution Architecture Document",
   that skill takes precedence; this one is for per-artifact reads.
+- **`change-review-pack`** (in `incunabula`) — the per-change
+  reviewable HTML (one page, three sections: what this change does /
+  decisions log / integration map) plus a local feedback webserver.
+  Borrows this skill's `decisions.yaml` projection plus the html-reports
+  tokens, and adds the Integration map computed from `architecture/`.
+  If a user asks for a "change review pack" or "feedback page for
+  this change", that skill takes precedence; this one is for
+  per-artifact reads.

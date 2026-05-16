@@ -15,7 +15,8 @@ Usage:
 Output: a single JSON document on stdout, structured as:
 
     kind=change:
-        { kind, path, meta, proposal?, design?, tasks?, specs?{cap: {...}} }
+        { kind, path, meta, proposal?, design?, tasks?, decisions?,
+          review?{feedback?, ...}, specs?{cap: {...}} }
     kind=architecture:
         { kind, path, domain_model?, rules?, adrs?[], acceptance?{group: {...}} }
     kind=artifact (single YAML file):
@@ -91,6 +92,7 @@ CHANGE_FILES = {
     "proposal.yaml": "proposal",
     "design.yaml": "design",
     "tasks.yaml": "tasks",
+    "decisions.yaml": "decisions",
 }
 
 ARCH_NAMED = {
@@ -114,6 +116,14 @@ def resolve_change(change_dir: Path) -> dict:
                 specs[cap_dir.name] = load_artifact(spec_file)
         if specs:
             out["specs"] = specs
+    review_dir = change_dir / "review"
+    if review_dir.is_dir():
+        review: dict = {}
+        feedback_file = review_dir / "feedback.yaml"
+        if feedback_file.is_file():
+            review["feedback"] = load_artifact(feedback_file)
+        if review:
+            out["review"] = review
     return out
 
 
