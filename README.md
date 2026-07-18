@@ -53,6 +53,20 @@ make refresh-references
 - `Makefile` — `install` / `uninstall` / `doctor` / `refresh-references` (symlink-based)
 - `install.ps1` — Windows copy-and-overwrite installer
 
+## Scope — design system only
+
+This repo is a **domain-agnostic** design-system reference: `html-reports`
+knows nothing about any particular project, and nothing here reads another
+repo's data. It is meant to be *copied from*, not to depend on anything
+downstream.
+
+The `changespec-view` skill that previously lived here has moved to its real
+home in **[incunabula](https://github.com/alepeh/incunabula)** (`skills/changespec-view/`),
+because it is coupled to incunabula's changespec YAML artifacts — it belongs
+with the data model it renders, not with the design system it borrows from.
+`changespec-view` copies its layouts from `html-reports` here; the dependency
+runs one way (incunabula → this repo) and never back.
+
 ## Credits and licence notice
 
 The exemplar HTML files in `skills/html-reports/references/` are the work of
