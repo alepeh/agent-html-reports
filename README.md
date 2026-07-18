@@ -69,19 +69,21 @@ runs one way (incunabula → this repo) and never back.
 
 ## Credits and licence notice
 
-The exemplar HTML files in `skills/html-reports/references/` are the work of
-**Thariq Shihipar** ([@ThariqS](https://github.com/ThariqS)), fetched from
-[ThariqS/html-effectiveness](https://github.com/ThariqS/html-effectiveness).
+The exemplar HTML files in `skills/html-reports/references/` come from
+[ThariqS/html-effectiveness](https://github.com/ThariqS/html-effectiveness),
+**© 2026 Anthropic PBC**, licensed under the **Apache License, Version 2.0**.
+Each file carries an SPDX header (`SPDX-License-Identifier: Apache-2.0`).
 
-That upstream repo currently ships **without a LICENSE**, which under default
-copyright law means all rights are reserved. To respect that:
+Apache-2.0 permits use, modification, and redistribution provided you retain
+the copyright notice and license and state any significant changes. So:
 
-- This repo does **not** commit the exemplar files. They are fetched from
-  upstream on install via `make install` (or `.\install.ps1` on Windows), which
-  runs `skills/html-reports/install-references.sh` and clones the latest copies
-  into your local checkout.
+- This repo still fetches the exemplars from upstream on install (`make install`
+  / `.\install.ps1`, via `skills/html-reports/install-references.sh`) rather
+  than committing them — that's now a size/staleness choice, **not** a legal
+  requirement (the "no LICENSE, all rights reserved" situation no longer
+  applies).
 - Only the routing logic (`SKILL.md`, helper scripts, this README) is original
   to this repo and is MIT-licensed (see `LICENSE`).
 
-If you fork or redistribute this skill, keep the attribution to Thariq intact
-and continue to fetch the exemplars from upstream rather than vendoring them.
+If you fork or redistribute, keep the Apache-2.0 attribution to Thariq
+Shihipar / Anthropic PBC intact.

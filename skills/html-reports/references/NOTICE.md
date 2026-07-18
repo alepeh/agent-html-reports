@@ -1,16 +1,20 @@
 # NOTICE
 
-The `.html` files in this directory are not part of this repository.
+The `.html` files in this directory are exemplars from
+[ThariqS/html-effectiveness](https://github.com/ThariqS/html-effectiveness),
+**© 2026 Anthropic PBC**, licensed under the **Apache License, Version 2.0**.
 
-They are fetched from
-[ThariqS/html-effectiveness](https://github.com/ThariqS/html-effectiveness)
-by **Thariq Shihipar** when you run `make install`, `.\install.ps1`, or
-`./install-references.sh`. All rights to those files belong to him.
+They are fetched from upstream when you run `make install`, `.\install.ps1`,
+or `./install-references.sh`. Each file carries an SPDX header
+(`SPDX-License-Identifier: Apache-2.0`).
 
-That upstream repo currently has no LICENSE, so under default copyright law all
-rights are reserved. Please respect that:
+Under Apache-2.0 you may use, modify, and redistribute these files, provided
+you:
 
-- Do not redistribute the fetched files as part of a published artifact.
-- Keep attribution to Thariq Shihipar intact in any fork of this skill.
-- If you want a clearer legal footing, ask the upstream author to add a licence
-  (e.g. MIT or CC-BY-4.0) to <https://github.com/ThariqS/html-effectiveness>.
+- retain the copyright notice and the Apache-2.0 license/attribution, and
+- state any significant changes you make.
+
+This repo fetches them on install rather than committing them — a size/staleness
+choice now, not a legal requirement (they were previously unlicensed, which is
+no longer the case). A full copy of the license is at
+<https://www.apache.org/licenses/LICENSE-2.0>.
