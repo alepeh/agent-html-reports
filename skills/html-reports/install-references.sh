@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
 # Fetch exemplar HTML files from ThariqS/html-effectiveness into references/.
-# Upstream currently ships without a LICENSE, so we do NOT vendor these files
-# — each user pulls them from upstream on install. See references/NOTICE.md
-# for attribution and the legal rationale.
+# Upstream is Apache-2.0 (© 2026 Anthropic PBC), so redistribution is allowed;
+# we fetch on install rather than vendoring as a size/staleness choice, not a
+# legal one. See references/NOTICE.md for attribution.
 
 set -euo pipefail
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
